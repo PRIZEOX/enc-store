@@ -1,9 +1,9 @@
-<mat-toolbar  class="max-w-7xl mx-auto border-x justify-between">
+<mat-toolbar [color]="'primary'" class="max-w-7xl mx-auto border-x justify-between">
     <a routerLink="home">Encayni Store</a>
     <button mat-icon-button [mat-menu-trigger-for]="menu">
         <mat-icon
         [matBadge]="1"
-        [matBadgeColor]="'warn'"
+        [matBadgeColor]="'accent'"
         >shopping_cart</mat-icon>
     </button>
     <mat-menu #menu = "matMenu">
@@ -31,12 +31,13 @@
                 <span class="font-bold">{{'450'| currency}}</span>
             </div>
             <div class="pt-3 flex justify-between">
-                <button class="bg-rose-600  text-white rounded-full w-9 h-9">
-                    <mat-icon>remove_shopping_cart</mat-icon>
+                <button mat-mini-fab [color]="'warn'" class="  text-white rounded-full w-9 h-9">
+                    <mat-icon>delete</mat-icon>
                 </button>
-                <button
+                <button mat-mini-fab
                 routerLink="cart"
-                class="bg-green-600  text-white rounded-full w-9 h-9">
+                [color]="'primary'"
+                class=" text-white rounded-full w-9 h-9">
                     <mat-icon>shopping_cart</mat-icon>
                 </button>
             </div>
