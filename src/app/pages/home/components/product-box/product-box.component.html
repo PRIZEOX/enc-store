@@ -12,10 +12,10 @@
                 <p *ngIf="fullWidthMode">Desctiption</p>
             </div>
             <div class="flex justify-between p-2">
-                <span class="font-bold text-red-400">{{'150' | currency}}</span>
-                <button>
+                <span  class="font-bold ">{{'150' | currency}}</span>
+                <button (click)="onAddToCart()">
                     <mat-icon
-                        class="text-gray-400 "
+                        [color]="'primary'"
                     >
                     shopping_cart
                     </mat-icon>
