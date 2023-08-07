@@ -5,24 +5,24 @@ import { CartService } from 'src/app/services/cart.service';
 @Component({
   selector: 'app-header',
   templateUrl:'./header.component.html',
-  styles: [
-  ]
 })
 export class HeaderComponent {
   @Input()
   get cart(): ICart {
     return this._cart;
   }
-  set cart(cart: ICart){
+
+  set cart(cart: ICart) {
     this._cart = cart;
 
-    this.itemsQuantity = cart.items.
-    map((item) => item.quantity).
-    reduce((prev, cur) => prev + cur, 0);
+    this.itemsQuantity = cart.items
+      .map((item) => item.quantity)
+      .reduce((prev, curent) => prev + curent, 0);
   }
 
   private _cart : ICart = { items: []};
   itemsQuantity : number = 0;
+
   constructor(
     private cartService: CartService
   ){}

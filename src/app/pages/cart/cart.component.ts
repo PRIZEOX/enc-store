@@ -62,12 +62,7 @@ export class CartComponent implements OnInit{
   }
 
   onReduceQuantity(item: ICartItem){
-    if(item.quantity <= 1){
-      this.cartService.removeFromCart(item);
-    }else{
-      item.quantity = item.quantity - 1;
-    }
-    
+    this.cartService.reduceQuantity(item);
   }
 
 }
