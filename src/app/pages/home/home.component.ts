@@ -17,24 +17,6 @@ export class HomeComponent implements OnInit, OnDestroy{
     private cartService: CartService,
     private storeService : StoreService,
   ){}
-
-  pr = [{
-    id: 1, 
-    title: 'foot',
-    price: 50,
-    category: 'shoes',
-    description: 'cool foot',
-    image: 'no img',
-  }
-,
-  {
-    id: 2, 
-    title: 'jeens',
-    price: 20,
-    category: 'clotch',
-    description: 'cool jeens',
-    image: 'no img',
-  }]
   cols = 3;
   rowHeight = ROW_HEIGHT[this.cols];
   category = "";
@@ -48,9 +30,10 @@ export class HomeComponent implements OnInit, OnDestroy{
   }
 
 
-  getProducts(){
-    this.productSubscription = this.storeService.getAllProducts(this.count, this.sort).
-      subscribe((_products) => {
+  getProducts(): void {
+    this.productSubscription = this.storeService
+      .getAllProducts(this.count, this.sort, this.category)
+      .subscribe((_products) => {
         this.products = _products;
       });
   }
@@ -62,6 +45,7 @@ export class HomeComponent implements OnInit, OnDestroy{
 
   onShownCategory(newCategory : string): void {
     this.category = newCategory;
+    this.getProducts();
   }
 
   onAddToCart(product: IProduct):void{
@@ -78,5 +62,15 @@ export class HomeComponent implements OnInit, OnDestroy{
    if(this.productSubscription){
     this.productSubscription.unsubscribe();
    }
+  }
+
+  onitemCountChange(count:number): void{
+    this.count = count.toString();
+    this.getProducts(); 
+  }
+
+  onsortChange(newSort:string): void{
+    this.sort = newSort;
+    this.getProducts();
   }
 }
